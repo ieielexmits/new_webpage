@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 /* CSS Variables for Light and Dark Mode */
 :root {
   --bg-primary: #ffffff;
@@ -136,3 +137,125 @@ body {
 [data-theme="dark"] button {
   color: inherit;
 }
+=======
+
+/* Theme variables */
+:root{
+  --bg: #ffffff;
+  --card: #ffffff;
+  --card-elevated: #ffffff;
+  --heading: #111827; /* gray-900 */
+  --text: #1f2937;    /* gray-800 */
+  --muted: #4b5563;   /* gray-600 */
+  --muted-2: #6b7280; /* gray-500 */
+  --border: #e5e7eb;  /* gray-200 */
+  --primary: #2563eb; /* blue-600 */
+  --primary-100: #dbeafe;
+  --accent: #ef4444;  /* red-600 */
+  --glass: rgba(255,255,255,0.04);
+}
+
+
+.dark{
+  --bg: #0f172a;      /* slate-900 */
+  --card: #0b1220;
+  --card-elevated: #081024;
+  --heading: #e5e7eb; /* gray-200 */
+  --text: #e5e7eb;    /* gray-200 */
+  --muted: #9ca3af;   /* gray-400 */
+  --muted-2: #6b7280; /* fallback */
+  --border: #374151;  /* gray-700 */
+  --primary: #60a5fa; /* lighter blue in dark */
+  --primary-100: rgba(96,165,250,0.12);
+  --accent: #f87171;  /* red-400 */
+  --glass: rgba(0,0,0,0.32);
+}
+
+
+/* Apply variables globally for smooth transitions */
+html, body, #root {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+
+/* Nav and common containers */
+nav, header, main, footer, .card {
+  background-color: var(--card);
+  border-color: var(--border);
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+
+
+/* Utility overrides to make common Tailwind classes theme-aware.
+   These small mappings ensure components using Tailwind color classes
+   also respond to the CSS variable-based theme toggle. */
+
+
+.bg-white { background-color: var(--card) !important; }
+.bg-white-50 { background-color: rgba(255,255,255,0.5) !important; }
+
+
+.bg-gray-50 { background-color: rgba(0,0,0,0.02) !important; }
+.bg-gray-100 { background-color: var(--card-elevated) !important; }
+
+
+.text-gray-900 { color: var(--heading) !important; }
+.text-gray-800 { color: var(--heading) !important; }
+.text-gray-700 { color: var(--text) !important; }
+.text-gray-600 { color: var(--muted) !important; }
+.text-gray-500 { color: var(--muted-2) !important; }
+.text-gray-400 { color: var(--muted-2) !important; }
+
+
+.text-red-900 { color: var(--accent) !important; }
+.text-red-600 { color: var(--accent) !important; }
+
+
+.border-gray-200 { border-color: var(--border) !important; }
+.dark\\:border-gray-700 { border-color: var(--border) !important; } /* keeps compatibility if Tailwind dark: used */
+
+
+.bg-blue-600 { background-color: var(--primary) !important; color: white !important; }
+.bg-blue-100 { background-color: var(--primary-100) !important; color: var(--primary) !important; }
+
+
+.bg-gray-200 { background-color: var(--card-elevated) !important; }
+
+
+/* Buttons and interactive elements */
+button, .btn {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+
+/* Card & modal backgrounds */
+.modal, .card, .rounded-3xl, .rounded-2xl {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+}
+
+
+/* Links */
+a, .hover\\:underline {
+  color: inherit;
+}
+
+
+/* Images: optional invert for simple logos when dark */
+.dark img.invert-in-dark {
+  filter: brightness(0) invert(1);
+}
+
+
+/* Fallback for hero/gradient areas in dark mode (keeps contrast) */
+.dark .bg-[linear-gradient\\(225deg,#A9D6F1_48.98%,#00A6FF_85.36%\\)] {
+  background: linear-gradient(225deg, rgba(10,20,30,0.45) 10%, rgba(0,100,150,0.12) 90%) !important;
+}
+
+
+/* Small helpers: ensure text on colored buttons stays readable */
+.bg-red-600 { background-color: var(--accent) !important; color: white !important; }
+.text-white { color: #fff !important; }
+>>>>>>> 36d42e2d4e83c2539266c8d0f3a6d076092363dd
