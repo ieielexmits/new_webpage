@@ -4,9 +4,9 @@ import { Button } from "@mui/material";
 
 function Hero() {
   return (
-    <div className="text-center py-10">
+    <div className="text-center pb-10">
       <Carousel />
-      <h2 className="mt-8 text-2xl font-bold">IEI STUDENT’S FORUM MITS</h2>
+      <h2 className="-mt-20 text-2xl font-bold">IEI STUDENT’S FORUM MITS</h2>
       <p className="text-gray-600 mt-2 max-w-xl mx-auto">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac odio
         efficitur, fringilla tellus eu, scelerisque tortor

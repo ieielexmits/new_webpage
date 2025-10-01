@@ -27,7 +27,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex justify-between items-center px-8 py-4 shadow-md bg-white">
+    <nav className="flex justify-between items-center px-8 py-4 bg-white border-b-2 border-gray-200">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <img src="iei_logo.png" alt="Logo" className="h-12 w-12" />
@@ -62,13 +62,13 @@ function Navbar() {
       <div className="flex space-x-3">
         <button 
           onClick={handleJoinIEI}
-          className="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition-colors font-medium"
+          className="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition-colors font-medium"
         >
           Join IEI
         </button>
         <button 
           onClick={handleLiveEvent}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors font-medium"
+          className="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors font-medium"
         >
           Live Event
         </button>

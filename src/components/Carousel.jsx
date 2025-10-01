@@ -15,13 +15,13 @@ function Carousel() {
 
   const prevSlide = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? images.length - 3 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
   const nextSlide = () => {
     setCurrentIndex((prev) =>
-      prev >= images.length - 3 ? 0 : prev + 1
+      prev === images.length - 1 ? 0 : prev + 1
     );
   };
 
@@ -37,96 +37,95 @@ function Carousel() {
   const visibleSlides = getVisibleSlides();
 
   return (
-    <div className="bg-white flex flex-col items-center pt-8 pb-12 px-8">
-      {/* Header */}
-      <div className="mb-6 text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">IEI STUDENT'S FORUM MITS</h1>
-        <p className="text-gray-600">Experience our gallery with interactive cards</p>
+    <div className="bg-white min-h-screen flex flex-col">
+      {/* Title Section Above Carousel */}
+      <div className="pt-12 pb-8 text-center px-8">
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">IEI STUDENT'S FORUM MITS</h1>
+        <p className="text-gray-600 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac odio efficitur, fringilla tellus eu, scelerisque tortor</p>
       </div>
 
-      {/* Carousel Container */}
-      <div className="relative w-full max-w-6xl flex items-center gap-4">
-        {/* Left Navigation Button */}
-        <button
-          onClick={prevSlide}
-          className="bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 z-30"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft size={28} className="text-gray-700" />
-        </button>
+      {/* Carousel Container with Shadow */}
+      <div className="relative w-full bg-white-50">
+        <div className="flex items-center justify-between px-4 py-8">
+          {/* Left Navigation Button */}
+          <button
+            onClick={prevSlide}
+            className="bg-white hover:bg-gray-100 rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none z-30 flex-shrink-0 shadow-md"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={32} className="text-gray-700" />
+          </button>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 relative overflow-visible flex-1">
-          {/* Slides Container */}
-          <div className="flex justify-center items-center gap-6 h-64">
-            {visibleSlides.map((slide, idx) => (
-              <div
-                key={`${currentIndex}-${idx}`}
-                className="relative flex-shrink-0 transition-all duration-500 ease-out"
-                style={{
-                  width: hoveredIndex === idx ? '280px' : '220px',
-                  height: '240px',
-                  zIndex: hoveredIndex === idx ? 20 : 10 - Math.abs(idx - 1),
-                }}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
+          <div className="relative overflow-visible flex-1 mx-8">
+            {/* Slides Container */}
+            <div className="flex justify-center items-center gap-8 h-80">
+              {visibleSlides.map((slide, idx) => (
                 <div
-                  className="relative h-full rounded-xl overflow-hidden shadow-lg transition-all duration-500 ease-out cursor-pointer"
+                  key={`${currentIndex}-${idx}`}
+                  className="relative flex-shrink-0 transition-all duration-500 ease-out"
                   style={{
-                    transform: hoveredIndex === idx 
-                      ? 'translateY(-20px) scale(1.05)' 
-                      : idx === 1 ? 'translateY(-5px)' : 'translateY(0px)',
-                    boxShadow: hoveredIndex === idx 
-                      ? '0 25px 50px -12px rgba(0, 0, 0, 0.25)' 
-                      : '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    width: hoveredIndex === idx ? '340px' : '280px',
+                    height: '280px',
+                    zIndex: hoveredIndex === idx ? 20 : 10 - Math.abs(idx - 1),
                   }}
+                  onMouseEnter={() => setHoveredIndex(idx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  {/* Image */}
-                  <img
-                    src={slide.src}
-                    alt={`Slide ${slide.originalIndex}`}
-                    className="w-full h-full object-cover transition-all duration-500"
-                    style={{
-                      filter: hoveredIndex === idx ? 'brightness(1.1)' : 'brightness(0.95)',
-                    }}
-                  />
-                  
-                  {/* Overlay on hover */}
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500"
+                    className="relative h-full rounded-xl overflow-hidden shadow-lg transition-all duration-500 ease-out cursor-pointer"
                     style={{
-                      opacity: hoveredIndex === idx ? 1 : 0,
+                      transform: hoveredIndex === idx 
+                        ? 'translateY(-20px) scale(1.05)' 
+                        : idx === 1 ? 'translateY(-5px)' : 'translateY(0px)',
+                      boxShadow: hoveredIndex === idx 
+                        ? '0 25px 50px -12px rgba(0, 0, 0, 0.25)' 
+                        : '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
                     }}
                   >
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                    {/* Image */}
+                    <img
+                      src={slide.src}
+                      alt={`Slide ${slide.originalIndex}`}
+                      className="w-full h-full object-cover transition-all duration-500"
+                      style={{
+                        filter: hoveredIndex === idx ? 'brightness(1.1)' : 'brightness(0.95)',
+                      }}
+                    />
                     
-                 </div>
+                    {/* Overlay on hover */}
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500"
+                      style={{
+                        opacity: hoveredIndex === idx ? 1 : 0,
+                      }}
+                    >
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                      
+                    </div>
+                    </div>
+
+                    {/* Highlight border */}
+                    <div
+                      className="absolute inset-0 border-4 rounded-xl transition-all duration-500"
+                      style={{
+                        borderColor: hoveredIndex === idx ? 'rgba(59, 130, 246, 0.8)' : 'transparent',
+                      }}
+                    />
                   </div>
-
-                  {/* Highlight border */}
-                  <div
-                    className="absolute inset-0 border-4 rounded-xl transition-all duration-500"
-                    style={{
-                      borderColor: hoveredIndex === idx ? 'rgba(59, 130, 246, 0.8)' : 'transparent',
-                    }}
-                  />
                 </div>
-
-
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* Right Navigation Button */}
+          <button
+            onClick={nextSlide}
+            className="bg-white hover:bg-gray-100 rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none z-30 flex-shrink-0 shadow-md"
+            aria-label="Next slide"
+          >
+            <ChevronRight size={32} className="text-gray-700" />
+          </button>
         </div>
-
-        {/* Right Navigation Button */}
-        <button
-          onClick={nextSlide}
-          className="bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 z-30"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={28} className="text-gray-700" />
-        </button>
-
       </div>
     </div>
   );
