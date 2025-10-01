@@ -1,13 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
 
 function Navbar() {
-  // Replace this with your actual Google Form URL for IEI membership
-  const joinIEIFormUrl = "YOUR_GOOGLE_FORM_URL_HERE";
+  // TODO: Replace this with your actual Google Form URL
+  // To get your Google Form URL:
+  // 1. Open your Google Form
+  // 2. Click "Send" button at the top
+  // 3. Click the link icon (<>)
+  // 4. Copy the URL that appears
+  // Example: "https://docs.google.com/forms/d/e/1FAIpQLSc.../viewform"
+  const joinIEIFormUrl = "https://forms.gle/L26q7ycAQPzNby4v5";
 
   const handleJoinIEI = () => {
-    window.open(joinIEIFormUrl, '_blank');
+    // Opens the Google Form in a new tab
+    window.open(joinIEIFormUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleLiveEvent = () => {
@@ -32,44 +37,41 @@ function Navbar() {
       {/* Links */}
       <ul className="flex space-x-6 text-gray-700 font-medium">
         <li>
-          <Link to="/events" className="hover:text-blue-600 transition-colors">
+          <a href="/events" className="hover:text-blue-600 transition-colors">
             Events
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/about" className="hover:text-blue-600 transition-colors">
+          <a href="/about" className="hover:text-blue-600 transition-colors">
             About us
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/membership" className="hover:text-blue-600 transition-colors">
+          <a href="/membership" className="hover:text-blue-600 transition-colors">
             Membership
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/contact" className="hover:text-blue-600 transition-colors">
+          <a href="/contact" className="hover:text-blue-600 transition-colors">
             Contact us
-          </Link>
+          </a>
         </li>
       </ul>
 
       {/* Buttons */}
       <div className="flex space-x-3">
-        <Button 
-          variant="outlined" 
-          size="small"
+        <button 
           onClick={handleJoinIEI}
+          className="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition-colors font-medium"
         >
           Join IEI
-        </Button>
-        <Button 
-          variant="contained" 
-          color="error" 
-          size="small"
+        </button>
+        <button 
           onClick={handleLiveEvent}
+          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors font-medium"
         >
           Live Event
-        </Button>
+        </button>
       </div>
     </nav>
   );

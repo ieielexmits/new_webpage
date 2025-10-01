@@ -2,6 +2,11 @@ import React from "react";
 import { CheckCircle } from "lucide-react";
 
 function Membership() {
+  
+  const handleJoinClick = () => {
+    window.open('https://forms.gle/L26q7ycAQPzNby4v5', '_blank');
+  };
+
   return (
     <section className="py-16 px-6 md:px-10 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
@@ -78,7 +83,10 @@ function Membership() {
             </div>
           </div>
 
-          <button className="mt-10 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors">
+          <button 
+            onClick={handleJoinClick}
+            className="mt-10 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors cursor-pointer"
+          >
             Join Now
           </button>
         </div>
