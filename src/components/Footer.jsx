@@ -12,8 +12,7 @@ function Footer() {
           <div>
             <h3 className="text-lg font-bold text-red-900">IEI MITS</h3>
             <p className="text-gray-600 text-sm mt-1">
-              Connecting professionals, fostering growth, and building the
-              future together.
+              Uniting minds, advancing skills, and engineering the future.
             </p>
           </div>
         </div>
@@ -27,7 +26,7 @@ function Footer() {
               href="mailto:iei.elex.mits@gmail.com" 
               className="text-gray-700 text-sm mt-2 block hover:underline"
             >
-            iei.elex.mits@gmail.com
+            <i className="fa-solid fa-envelope"></i>  iei.elex.mits@gmail.com
             </a>
 
             {/* Phone */}
@@ -36,8 +35,7 @@ function Footer() {
               href="tel:+919174407064" 
               className="text-gray-700 text-sm block hover:underline"
             >
-            
-            9174407064
+            <i class="fa-solid fa-phone"></i>  9174407064
            </a>
 </div>
         {/* Quick links */}
@@ -66,7 +64,7 @@ function Footer() {
         <div>
           <h3 className="text-lg font-bold">Follow us</h3>
           <div className="flex space-x-4 mt-2 text-2xl">
-            <a href="https://www.instagram.com/iei_student_chapter_mits?igsh=MXdyZzRrNnU4Y2Ywaw==" className="hover:text-red-700">🌐</a>
+            <a href="https://www.instagram.com/iei_student_chapter_mits?igsh=MXdyZzRrNnU4Y2Ywaw==" className="hover:text-red-700 text-sm"><i className="fa-brands fa-instagram"></i>  iei_student_chapter_mits</a>
           </div>
         </div>
       </div>

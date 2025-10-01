@@ -40,8 +40,8 @@ function Carousel() {
     <div className="bg-white min-h-screen flex flex-col">
       {/* Title Section Above Carousel */}
       <div className="pt-12 pb-8 text-center px-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-3">IEI STUDENT'S FORUM MITS</h1>
-        <p className="text-gray-600 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac odio efficitur, fringilla tellus eu, scelerisque tortor</p>
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">IEI STUDENT CHAPTER <p>Department of Electronics Engineering</p></h1>
+        <p className="text-gray-600 text-lg">IEI SC MITS (EC/ET) is a Departmental Student Chapter of The Institution of Engineers (India), dedicated to enhancing technical knowledge, practical skills, and innovation among budding engineers in the Engineering and allied fields. </p>
       </div>
 
       {/* Carousel Container with Shadow */}

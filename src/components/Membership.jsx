@@ -8,7 +8,7 @@ function Membership() {
   };
 
   return (
-    <section className="py-16 px-6 md:px-10 bg-white">
+    <section className="-py-24 px-6 md:px-10 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         
         {/* Left Content - Extended */}
@@ -17,8 +17,8 @@ function Membership() {
             Become a Member
           </h2>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            Join the IETE MITS community and gain access to a world of opportunities.
-            Our membership is designed to support your journey every step of the way.
+            Join the IEI EC MITS and open up a gate to success together.
+            Our membership is curated to help reach everyone and be valuable assets to world.
           </p>
           
           <div className="space-y-4">
@@ -26,10 +26,10 @@ function Membership() {
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
                 <h3 className="font-semibold text-gray-800 mb-1">
-                  Access to all programs and workshops
+                  Minimal Cost access to all IEI events
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Participate in exclusive technical sessions and skill development programs
+                  Participate in exclusive technical sessions and skill development programs together
                 </p>
               </div>
             </div>
@@ -38,7 +38,7 @@ function Membership() {
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
                 <h3 className="font-semibold text-gray-800 mb-1">
-                  Exclusive networking events with professionals
+                  Build and grow your network with society professionals
                 </h3>
                 <p className="text-gray-600 text-sm">
                   Connect with industry experts and alumni from leading organizations
@@ -50,10 +50,10 @@ function Membership() {
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
                 <h3 className="font-semibold text-gray-800 mb-1">
-                  Build a huge professional network
+                  Together we grow
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Grow your connections and create lasting relationships in your field
+                  Receive personalized support from experienced mentors of your domains
                 </p>
               </div>
             </div>
@@ -62,19 +62,7 @@ function Membership() {
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
                 <h3 className="font-semibold text-gray-800 mb-1">
-                  Career guidance and mentorship
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Receive personalized support from experienced mentors in your domain
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-1">
-                  Recognition and certificates
+                  Certifications and other perks
                 </h3>
                 <p className="text-gray-600 text-sm">
                   Earn official certifications and recognition for your achievements
