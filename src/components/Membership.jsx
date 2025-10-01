@@ -8,15 +8,15 @@ function Membership() {
   };
 
   return (
-    <section className="py-16 px-6 md:px-10 bg-white">
+    <section className="py-16 px-6 md:px-10 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         
         {/* Left Content - Extended */}
         <div className="flex-1 lg:max-w-2xl">
-          <h2 className="text-4xl font-bold text-red-900 mb-6">
+          <h2 className="text-4xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
             Become a Member
           </h2>
-          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+          <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             Join the IETE MITS community and gain access to a world of opportunities.
             Our membership is designed to support your journey every step of the way.
           </p>
@@ -25,10 +25,10 @@ function Membership() {
             <div className="flex items-start gap-4">
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
-                <h3 className="font-semibold text-gray-800 mb-1">
+                <h3 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
                   Access to all programs and workshops
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                   Participate in exclusive technical sessions and skill development programs
                 </p>
               </div>
@@ -37,10 +37,10 @@ function Membership() {
             <div className="flex items-start gap-4">
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
-                <h3 className="font-semibold text-gray-800 mb-1">
+                <h3 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
                   Exclusive networking events with professionals
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                   Connect with industry experts and alumni from leading organizations
                 </p>
               </div>
@@ -49,10 +49,10 @@ function Membership() {
             <div className="flex items-start gap-4">
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
-                <h3 className="font-semibold text-gray-800 mb-1">
+                <h3 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
                   Build a huge professional network
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                   Grow your connections and create lasting relationships in your field
                 </p>
               </div>
@@ -61,10 +61,10 @@ function Membership() {
             <div className="flex items-start gap-4">
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
-                <h3 className="font-semibold text-gray-800 mb-1">
+                <h3 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
                   Career guidance and mentorship
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                   Receive personalized support from experienced mentors in your domain
                 </p>
               </div>
@@ -73,10 +73,10 @@ function Membership() {
             <div className="flex items-start gap-4">
               <CheckCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
               <div>
-                <h3 className="font-semibold text-gray-800 mb-1">
+                <h3 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
                   Recognition and certificates
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                   Earn official certifications and recognition for your achievements
                 </p>
               </div>

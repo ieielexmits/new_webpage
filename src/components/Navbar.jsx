@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function Navbar() {
-  // TODO: Replace this with your actual Google Form URL
-  // To get your Google Form URL:
-  // 1. Open your Google Form
-  // 2. Click "Send" button at the top
-  // 3. Click the link icon (<>)
-  // 4. Copy the URL that appears
-  // Example: "https://docs.google.com/forms/d/e/1FAIpQLSc.../viewform"
+  const [theme, setTheme] = useState('light');
+
+  // Check for saved theme on component mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
+
   const joinIEIFormUrl = "https://forms.gle/L26q7ycAQPzNby4v5";
 
   const handleJoinIEI = () => {
-    // Opens the Google Form in a new tab
     window.open(joinIEIFormUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleLiveEvent = () => {
-    // Scroll to the events section
     const eventsSection = document.getElementById('events-section');
     if (eventsSection) {
       eventsSection.scrollIntoView({ 
@@ -58,8 +66,18 @@ function Navbar() {
         </li>
       </ul>
 
-      {/* Buttons */}
-      <div className="flex space-x-3">
+      {/* Buttons with Theme Toggle */}
+      <div className="flex space-x-3 items-center">
+        {/* Theme Toggle Button */}
+        <label className="theme-toggle">
+          <input 
+            type="checkbox" 
+            checked={theme === 'dark'}
+            onChange={toggleTheme}
+          />
+          <span className="theme-toggle-slider"></span>
+        </label>
+
         <button 
           onClick={handleJoinIEI}
           className="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition-colors font-medium"

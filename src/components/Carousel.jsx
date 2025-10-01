@@ -37,11 +37,15 @@ function Carousel() {
   const visibleSlides = getVisibleSlides();
 
   return (
-    <div className="bg-white flex flex-col items-center pt-8 pb-12 px-8">
+    <div className="flex flex-col items-center pt-8 pb-12 px-8 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Header */}
       <div className="mb-6 text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">IEI STUDENT'S FORUM MITS</h1>
-        <p className="text-gray-600">Experience our gallery with interactive cards</p>
+        <h1 className="text-4xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+          IEI STUDENT'S FORUM MITS
+        </h1>
+        <p style={{ color: 'var(--text-secondary)' }}>
+          Experience our gallery with interactive cards
+        </p>
       </div>
 
       {/* Carousel Container */}
@@ -49,13 +53,14 @@ function Carousel() {
         {/* Left Navigation Button */}
         <button
           onClick={prevSlide}
-          className="bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 z-30"
+          className="hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 z-30"
+          style={{ backgroundColor: 'var(--card-bg)' }}
           aria-label="Previous slide"
         >
-          <ChevronLeft size={28} className="text-gray-700" />
+          <ChevronLeft size={28} style={{ color: 'var(--text-primary)' }} />
         </button>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 relative overflow-visible flex-1">
+        <div className="backdrop-blur-sm rounded-2xl shadow-xl p-6 relative overflow-visible flex-1" style={{ backgroundColor: 'var(--card-bg)' }}>
           {/* Slides Container */}
           <div className="flex justify-center items-center gap-6 h-64">
             {visibleSlides.map((slide, idx) => (
@@ -121,10 +126,11 @@ function Carousel() {
         {/* Right Navigation Button */}
         <button
           onClick={nextSlide}
-          className="bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 z-30"
+          className="hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 z-30"
+          style={{ backgroundColor: 'var(--card-bg)' }}
           aria-label="Next slide"
         >
-          <ChevronRight size={28} className="text-gray-700" />
+          <ChevronRight size={28} style={{ color: 'var(--text-primary)' }} />
         </button>
 
       </div>

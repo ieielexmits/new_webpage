@@ -2,6 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Light and Dark Mode */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --card-bg: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --navbar-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #404040;
+  --card-bg: #2d2d2d;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --navbar-bg: #1f1f1f;
+}
+
 body {
   font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle Button Styles */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.theme-toggle-slider:before {
+  position: absolute;
+  content: "☀️";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.theme-toggle input:checked + .theme-toggle-slider {
+  background-color: #3b82f6;
+}
+
+.theme-toggle input:checked + .theme-toggle-slider:before {
+  transform: translateX(30px);
+  content: "🌙";
+}
+
+/* Dark mode styles for navbar */
+[data-theme="dark"] nav {
+  background-color: var(--navbar-bg) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] nav h1 {
+  color: #dc2626 !important;
+}
+
+[data-theme="dark"] nav ul li a {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] nav ul li a:hover {
+  color: #60a5fa !important;
+}
+
+/* Dark mode text visibility for all sections */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] div {
+  color: #e5e7eb !important;
+}
+
+/* Specific styles for About section in dark mode */
+[data-theme="dark"] section h2 {
+  color: #ef4444 !important;
+}
+
+[data-theme="dark"] section p {
+  color: #e5e7eb !important;
+}
+
+/* Gray box in dark mode */
+[data-theme="dark"] .bg-gray-200 {
+  background-color: #4b5563 !important;
+  border: 1px solid #6b7280;
+}
+
+/* Ensure buttons remain visible in dark mode */
+[data-theme="dark"] button {
+  color: inherit;
 }
