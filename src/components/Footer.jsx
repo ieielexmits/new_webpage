@@ -20,11 +20,26 @@ function Footer() {
 
         {/* Contact */}
         <div>
-          <h3 className="text-lg font-bold">Contact us</h3>
-          <p className="text-gray-700 text-sm mt-2">iei.elex.mits@gmail.com</p>
-          <p className="text-gray-700 text-sm">9174407064</p>
-        </div>
+           <h3 className="text-lg font-bold">Contact us</h3>
 
+             {/* Email */}
+            <a 
+              href="mailto:iei.elex.mits@gmail.com" 
+              className="text-gray-700 text-sm mt-2 block hover:underline"
+            >
+            iei.elex.mits@gmail.com
+            </a>
+
+            {/* Phone */}
+            <p className="text-gray-700 text-sm">Vaishnavi Pathak</p>
+            <a 
+              href="tel:+919174407064" 
+              className="text-gray-700 text-sm block hover:underline"
+            >
+            
+            9174407064
+           </a>
+</div>
         {/* Quick links */}
         <div>
           <h3 className="text-lg font-bold">Quick link</h3>
