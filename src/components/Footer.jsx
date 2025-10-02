@@ -10,7 +10,7 @@ function Footer() {
         <div className="flex items-start space-x-4">
           <img src="iei_logo.png" alt="Logo" className="h-14 w-14" />
           <div>
-            <h3 className="text-lg font-bold text-red-900" style={{ color: 'var(--text-primary)' }}>
+            {/* <h3 className="text-lg font-bold text-red-900" style={{ color: 'var(--text-primary)' }}> */}
             <h3
                className="font-frank font-bold"
                style={{ fontSize: "20px", color: "#8F3938" }}

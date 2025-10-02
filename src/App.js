@@ -19,7 +19,7 @@ function App() {
           path="/"
           element={
             <>
-              <Carousel />
+               <Carousel/>
               <Events />
               <About />
               <Membership />

@@ -25,7 +25,7 @@ body {
   --border-color: #e5e7eb;
   --primary: #2563eb;
   --primary-100: #dbeafe;
-  --accent: #ef4444;
+  --accent: #b80505;
   
   /* Component Specific */
   --navbar-bg: #ffffff;
@@ -93,6 +93,11 @@ nav {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
+/* Navbar Logo Text in Dark Mode */
+.dark nav h1 {
+  color: #ffffff !important;
+}
+
 /* Carousel Navigation Buttons */
 .carousel-nav-btn {
   background-color: #ffffff;
@@ -119,6 +124,11 @@ footer {
   transition: background-color 300ms ease, border-color 300ms ease;
 }
 
+/* Footer Logo Text and All Headings in Dark Mode */
+.dark footer h3 {
+  color: #ffffff !important;
+}
+
 /* Carousel Section */
 .carousel-section {
   background-color: var(--carousel-bg) !important;
@@ -127,6 +137,11 @@ footer {
 
 .dark .carousel-section {
   background-color: #222222 !important;
+}
+
+/* Carousel Heading in Dark Mode */
+.dark .carousel-section h1 {
+  color: #7AD1FF !important;
 }
 
 /* Events Section with Gradient */
@@ -288,6 +303,13 @@ a {
 /* Typography in Dark Mode */
 .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
   color: var(--text-primary);
+}
+
+/* Main Section Headings in Dark Mode - Using #7AD1FF */
+.dark .about-section h2,
+.dark .membership-section h2,
+.dark #events-section > h2 {
+  color: #7AD1FF !important;
 }
 
 .dark p {
