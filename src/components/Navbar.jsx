@@ -51,7 +51,8 @@ function Navbar() {
 
   return (
     <>
-      <nav className="flex justify-between items-center px-8 py-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+      {/* <nav className="flex justify-between items-center px-8 py-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900 dark:border-gray-700"> */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
  
         {/* Logo */}
         <Link to="/">
