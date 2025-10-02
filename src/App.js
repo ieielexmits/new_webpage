@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
 import Events from "./components/Events";
 import About from "./components/About";
 import Membership from "./components/Membership";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import EventDetail from "./components/EventDetail";
+import Carousel from "./components/Carousel";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           path="/"
           element={
             <>
-              <Hero />
+              <Carousel />
               <Events />
               <About />
               <Membership />

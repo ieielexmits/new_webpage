@@ -1,9 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: 'class', // <-- required for class-based dark mode
+  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        frank: ['"Frank Ruhl Libre"', 'serif'],
+        opensans: ['"Open Sans"', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

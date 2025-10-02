@@ -66,7 +66,7 @@ function Events() {
   };
 
   return (
-    <section id="events-section" className="bg-[linear-gradient(225deg,#A9D6F1_48.98%,#00A6FF_85.36%)] py-16 min-h-screen">
+    <section id="events-section" className="bg-[linear-gradient(225deg,#A9D6F1_48.98%,#00A6FF_85.36%)] py-16 min-h-screen pt-20">
       <h2 className="text-4xl font-bold text-center mb-12" style={{ color: 'var(--text-primary)' }}>
         Our Events
       </h2>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="py-10 px-10 mt-12 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+    <footer id="footer" className="py-10 px-10 mt-12 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-secondary)' }}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
         
         {/* Left Section - Logo + Text */}
@@ -11,11 +11,14 @@ function Footer() {
           <img src="iei_logo.png" alt="Logo" className="h-14 w-14" />
           <div>
             <h3 className="text-lg font-bold text-red-900" style={{ color: 'var(--text-primary)' }}>
+            <h3
+               className="font-frank font-bold"
+               style={{ fontSize: "20px", color: "#8F3938" }}
+            >
               IEI MITS
             </h3>
-            <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-              Connecting professionals, fostering growth, and building the
-              future together.
+            <p className="text-gray-600 text-sm mt-1">
+              Uniting minds, advancing skills, and engineering the future.
             </p>
           </div>
         </div>
@@ -44,7 +47,7 @@ function Footer() {
               className="text-sm block hover:underline"
               style={{ color: 'var(--text-secondary)' }}
             >
-            9174407064
+            <i class="fa-solid fa-phone"></i>  9174407064
            </a>
         </div>
 
@@ -78,13 +81,7 @@ function Footer() {
             Follow us
           </h3>
           <div className="flex space-x-4 mt-2 text-2xl">
-            <a 
-              href="https://www.instagram.com/iei_student_chapter_mits?igsh=MXdyZzRrNnU4Y2Ywaw==" 
-              className="hover:text-red-700"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              🌐
-            </a>
+            <a href="https://www.instagram.com/iei_student_chapter_mits?igsh=MXdyZzRrNnU4Y2Ywaw==" className="hover:text-red-700 text-sm"><i className="fa-brands fa-instagram"></i>  iei_student_chapter_mits</a>
           </div>
         </div>
       </div>
