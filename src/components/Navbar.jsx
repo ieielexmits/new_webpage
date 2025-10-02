@@ -12,12 +12,22 @@ function Navbar() {
 
 
   const handleLiveEvent = () => {
-    const eventsSection = document.getElementById("events-section");
+    const eventsSection = document.getElementById("events");
     if (eventsSection) {
       eventsSection.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+    }
+  };
+
+    const scrollToSection = (e, id) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.hash = `#${id}`;
     }
   };
 
@@ -51,7 +61,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="flex justify-between items-center px-8 py-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
  
         {/* Logo */}
         <Link to="/">
@@ -63,33 +73,28 @@ function Navbar() {
             >
               IEI MITS
             </h1>
-
           </div>
         </Link>
-
 
         {/* Links */}
         <ul className="flex space-x-6 text-gray-700 font-medium dark:text-gray-200">
           <li>
-            <a href="/events" className="hover:text-blue-600 transition-colors">
+            <a href="#events" onClick={(e) => scrollToSection(e, "events")} className="hover:text-blue-600 transition-colors">
               Events
             </a>
           </li>
           <li>
-            <a href="/about" className="hover:text-blue-600 transition-colors">
+            <a href="#about" onClick={(e) => scrollToSection(e, "about")} className="hover:text-blue-600 transition-colors">
               About us
             </a>
           </li>
           <li>
-            <a
-              href="/membership"
-              className="hover:text-blue-600 transition-colors"
-            >
+            <a href="#membership" onClick={(e) => scrollToSection(e, "membership")} className="hover:text-blue-600 transition-colors">
               Membership
             </a>
           </li>
           <li>
-            <a href="/contact" className="hover:text-blue-600 transition-colors">
+            <a href="#footer" onClick={(e) => scrollToSection(e, "footer")} className="hover:text-blue-600 transition-colors">
               Contact us
             </a>
           </li>
@@ -141,10 +146,6 @@ function Navbar() {
           </button>
         </div>
       </nav>
-
-
-      {/* Spacer div (navbar ki height ke barabar) */}
-      <div className="h-20"></div>
     </>
   );
 }

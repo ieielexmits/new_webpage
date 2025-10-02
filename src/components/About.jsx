@@ -3,7 +3,7 @@ import React from "react";
 function About() {
 
   return (
-    <section className="about-section py-24 px-6 md:px-10">
+    <section id="about" className="about-section py-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         <h2 className="text-4xl font-bold text-gray-900 mb-4">About IEI EC MITS Gwalior</h2>
       </div>
