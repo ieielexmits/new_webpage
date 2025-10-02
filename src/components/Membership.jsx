@@ -8,7 +8,7 @@ function Membership() {
   };
 
   return (
-    <section className="membership-section py-24 px-6 md:px-10 bg-white">
+    <section id="membership" className="membership-section py-24 px-6 md:px-10 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         
         {/* Left Content - Extended */}

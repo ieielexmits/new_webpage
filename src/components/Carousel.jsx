@@ -37,7 +37,7 @@ function Carousel() {
   const visibleSlides = getVisibleSlides();
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    <div className="bg-white min-h-screen flex flex-col pt-20">
       {/* Title Section Above Carousel */}
       <div className="pt-12 pb-8 text-center px-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-3">IEI STUDENT CHAPTER <p>Department of Electronics Engineering</p></h1>

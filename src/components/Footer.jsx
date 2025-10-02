@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="py-10 px-10 mt-12 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+    <footer id="footer" className="py-10 px-10 mt-12 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-secondary)' }}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
         
         {/* Left Section - Logo + Text */}
