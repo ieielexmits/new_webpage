@@ -1,12 +1,11 @@
 import React from "react";
 
 function About() {
-  return (
-    <section className="py-16 px-6 md:px-10 lg:px-20 bg-white-100">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">About IEI EC MITS Gwalior</h2>
 
+  return (
+    <section className="about-section py-24 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">About IEI EC MITS Gwalior</h2>
       </div>
 
       {/* Mission Section with Image */}
@@ -15,7 +14,7 @@ function About() {
         <div className="flex-shrink-0 lg:w-1/2">
           <img 
             src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop" 
-            alt="IETE MITS team members" 
+            alt="IEI MITS team" 
             className="w-full h-[520px] object-cover rounded-lg shadow-lg"
           />
         </div>

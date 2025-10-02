@@ -8,12 +8,12 @@ function Membership() {
   };
 
   return (
-    <section className="-py-24 px-6 md:px-10 bg-white">
+    <section className="membership-section py-24 px-6 md:px-10 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         
         {/* Left Content - Extended */}
         <div className="flex-1 lg:max-w-2xl">
-          <h2 className="text-4xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+          <h2 className="text-4xl font-bold mb-6 text-gray-900">
             Become a Member
           </h2>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
@@ -40,7 +40,7 @@ function Membership() {
                 <h3 className="font-semibold text-gray-800 mb-1">
                   Build and grow your network with society professionals
                 </h3>
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-gray-600 text-sm">
                   Connect with industry experts and alumni from leading organizations
                 </p>
               </div>
@@ -64,7 +64,7 @@ function Membership() {
                 <h3 className="font-semibold text-gray-800 mb-1">
                   Certifications and other perks
                 </h3>
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-gray-600 text-sm">
                   Earn official certifications and recognition for your achievements
                 </p>
               </div>

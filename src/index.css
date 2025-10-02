@@ -5,122 +5,318 @@
 body {
   @apply font-opensans font-semibold;
 }
-/* Theme variables */
-:root{
-  --bg: #ffffff;
-  --card: #ffffff;
-  --card-elevated: #ffffff;
-  --heading: #111827; /* gray-900 */
-  --text: #1f2937;    /* gray-800 */
-  --muted: #4b5563;   /* gray-600 */
-  --muted-2: #6b7280; /* gray-500 */
-  --border: #e5e7eb;  /* gray-200 */
-  --primary: #2563eb; /* blue-600 */
-  --primary-100: #dbeafe;
-  --accent: #ef4444;  /* red-600 */
-  --glass: rgba(255,255,255,0.04);
-}
 
+/* ============================================
+   THEME VARIABLES - Light & Dark Mode
+   ============================================ */
+:root{
+  /* Backgrounds */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --card-bg: #ffffff;
+  --card-elevated: #f3f4f6;
+  
+  /* Text Colors */
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  
+  /* UI Elements */
+  --border-color: #e5e7eb;
+  --primary: #2563eb;
+  --primary-100: #dbeafe;
+  --accent: #ef4444;
+  
+  /* Component Specific */
+  --navbar-bg: #ffffff;
+  --footer-bg: #f9fafb;
+  --carousel-bg: #ffffff;
+  --event-gradient-start: #A9D6F1;
+  --event-gradient-end: #00A6FF;
+}
 
 .dark{
-  --bg: #0f172a;      /* slate-900 */
-  --card: #0b1220;
-  --card-elevated: #081024;
-  --heading: #e5e7eb; /* gray-200 */
-  --text: #e5e7eb;    /* gray-200 */
-  --muted: #9ca3af;   /* gray-400 */
-  --muted-2: #6b7280; /* fallback */
-  --border: #374151;  /* gray-700 */
-  --primary: #60a5fa; /* lighter blue in dark */
-  --primary-100: rgba(96,165,250,0.12);
-  --accent: #f87171;  /* red-400 */
-  --glass: rgba(0,0,0,0.32);
+  /* Backgrounds */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --card-bg: #1e293b;
+  --card-elevated: #334155;
+  
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  /* UI Elements */
+  --border-color: #334155;
+  --primary: #60a5fa;
+  --primary-100: rgba(96,165,250,0.15);
+  --accent: #f87171;
+  
+  /* Component Specific */
+  --navbar-bg: #0a1628;
+  --footer-bg: #0a1628;
+  --carousel-bg: #1a2332;
+  --event-gradient-start: #1e3a5f;
+  --event-gradient-end: #0f2744;
 }
 
-
-/* Apply variables globally for smooth transitions */
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
 html, body, #root {
-  background-color: var(--bg);
-  color: var(--text);
-  transition: background-color 200ms ease, color 200ms ease;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
+/* ============================================
+   COMPONENT-SPECIFIC BACKGROUNDS
+   ============================================ */
 
-/* Nav and common containers */
-nav, header, main, footer, .card {
-  background-color: var(--card);
-  border-color: var(--border);
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+/* Navbar */
+nav {
+  background-color: var(--navbar-bg) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
+.dark nav {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
 
-/* Utility overrides to make common Tailwind classes theme-aware.
-   These small mappings ensure components using Tailwind color classes
-   also respond to the CSS variable-based theme toggle. */
+/* Footer */
+footer {
+  background-color: var(--footer-bg) !important;
+  border-top: 1px solid var(--border-color);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
 
+/* Carousel Section */
+.carousel-section {
+  background-color: var(--carousel-bg) !important;
+  transition: background-color 300ms ease;
+}
 
-.bg-white { background-color: var(--card) !important; }
-.bg-white-50 { background-color: rgba(255,255,255,0.5) !important; }
+/* Events Section with Gradient */
+#events-section {
+  background: linear-gradient(225deg, var(--event-gradient-start) 48.98%, var(--event-gradient-end) 85.36%) !important;
+  transition: background 300ms ease;
+}
 
+/* About Section */
+.about-section {
+  background-color: var(--bg-secondary) !important;
+  transition: background-color 300ms ease;
+}
 
-.bg-gray-50 { background-color: rgba(0,0,0,0.02) !important; }
+/* Membership Section */
+.membership-section {
+  background-color: var(--bg-primary) !important;
+  transition: background-color 300ms ease;
+}
+
+/* ============================================
+   TAILWIND UTILITY OVERRIDES
+   ============================================ */
+
+/* Background Colors */
+.bg-white { background-color: var(--card-bg) !important; }
+.bg-white-50 { background-color: var(--bg-secondary) !important; }
+.bg-white-100 { background-color: var(--bg-secondary) !important; }
+.bg-gray-50 { background-color: var(--bg-secondary) !important; }
 .bg-gray-100 { background-color: var(--card-elevated) !important; }
+.bg-gray-200 { background-color: var(--card-elevated) !important; }
 
+/* Text Colors */
+.text-gray-900 { color: var(--text-primary) !important; }
+.text-gray-800 { color: var(--text-primary) !important; }
+.text-gray-700 { color: var(--text-secondary) !important; }
+.text-gray-600 { color: var(--text-muted) !important; }
+.text-gray-500 { color: var(--text-muted) !important; }
+.text-gray-400 { color: var(--text-muted) !important; }
 
-.text-gray-900 { color: var(--heading) !important; }
-.text-gray-800 { color: var(--heading) !important; }
-.text-gray-700 { color: var(--text) !important; }
-.text-gray-600 { color: var(--muted) !important; }
-.text-gray-500 { color: var(--muted-2) !important; }
-.text-gray-400 { color: var(--muted-2) !important; }
-
-
+/* Accent Colors */
 .text-red-900 { color: var(--accent) !important; }
 .text-red-600 { color: var(--accent) !important; }
 
+/* Border Colors */
+.border-gray-200 { border-color: var(--border-color) !important; }
+.border-gray-700 { border-color: var(--border-color) !important; }
+.dark\:border-gray-700 { border-color: var(--border-color) !important; }
 
-.border-gray-200 { border-color: var(--border) !important; }
-.dark\\:border-gray-700 { border-color: var(--border) !important; } /* keeps compatibility if Tailwind dark: used */
-
-
+/* Primary Colors */
 .bg-blue-600 { background-color: var(--primary) !important; color: white !important; }
 .bg-blue-100 { background-color: var(--primary-100) !important; color: var(--primary) !important; }
+.text-blue-600 { color: var(--primary) !important; }
+.text-blue-700 { color: var(--primary) !important; }
+.border-blue-600 { border-color: var(--primary) !important; }
 
-
-.bg-gray-200 { background-color: var(--card-elevated) !important; }
-
-
-/* Buttons and interactive elements */
-button, .btn {
-  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-}
-
-
-/* Card & modal backgrounds */
-.modal, .card, .rounded-3xl, .rounded-2xl {
-  background-color: var(--card) !important;
-  color: var(--text) !important;
-}
-
-
-/* Links */
-a, .hover\\:underline {
-  color: inherit;
-}
-
-
-/* Images: optional invert for simple logos when dark */
-.dark img.invert-in-dark {
-  filter: brightness(0) invert(1);
-}
-
-
-/* Fallback for hero/gradient areas in dark mode (keeps contrast) */
-.dark .bg {
-  background: linear-gradient(225deg, rgba(10,20,30,0.45) 10%, rgba(0,100,150,0.12) 90%) !important;
-}
-
-
-/* Small helpers: ensure text on colored buttons stays readable */
+/* Special Colors */
 .bg-red-600 { background-color: var(--accent) !important; color: white !important; }
 .text-white { color: #fff !important; }
+
+/* ============================================
+   INTERACTIVE ELEMENTS
+   ============================================ */
+
+/* Buttons */
+button, .btn {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, 
+              box-shadow 200ms ease, transform 150ms ease;
+}
+
+/* Links */
+a {
+  transition: color 200ms ease;
+}
+
+.hover\:text-blue-600:hover {
+  color: var(--primary) !important;
+}
+
+.hover\:text-red-700:hover {
+  color: var(--accent) !important;
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   CARDS & MODALS
+   ============================================ */
+
+.modal, .card, .rounded-3xl, .rounded-2xl {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color);
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
+/* ============================================
+   DARK MODE SPECIFIC IMPROVEMENTS
+   ============================================ */
+
+/* Shadows in Dark Mode */
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.dark .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+.dark .shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Hover States in Dark Mode */
+.dark .hover\:bg-gray-100:hover {
+  background-color: var(--card-elevated) !important;
+}
+
+.dark .hover\:bg-blue-700:hover {
+  background-color: #2563eb !important;
+}
+
+.dark .hover\:bg-red-700:hover {
+  background-color: #dc2626 !important;
+}
+
+.dark .hover\:bg-blue-100:hover {
+  background-color: rgba(96, 165, 250, 0.2) !important;
+}
+
+/* Typography in Dark Mode */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: var(--text-primary);
+}
+
+.dark p {
+  color: var(--text-secondary);
+}
+
+.dark .text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+/* Borders in Dark Mode */
+.dark .border {
+  border-color: var(--border-color);
+}
+
+.dark .border-2 {
+  border-color: var(--border-color);
+}
+
+/* Event Cards with Glassmorphism in Dark Mode */
+.dark #events-section .rounded-3xl {
+  background-color: rgba(30, 41, 59, 0.7) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal Overlay in Dark Mode */
+.dark .fixed.inset-0.bg-black {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Form Elements in Dark Mode */
+.dark input, 
+.dark textarea, 
+.dark select {
+  background-color: var(--card-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark input:focus, 
+.dark textarea:focus, 
+.dark select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+/* ============================================
+   SECTION TRANSITIONS
+   ============================================ */
+
+section {
+  transition: background-color 300ms ease;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Smooth transitions for all color changes */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Preserve transform and opacity transitions */
+*[style*="transform"],
+*[style*="opacity"] {
+  transition-property: background-color, border-color, color, fill, stroke, transform, opacity !important;
+}
+
+/* Remove transitions for specific interactive elements to keep them snappy */
+button *,
+a *,
+.no-transition {
+  transition: none !important;
+}
+
+button,
+a {
+  transition: background-color 200ms ease, color 200ms ease, transform 150ms ease !important;
+}
