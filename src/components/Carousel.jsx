@@ -37,7 +37,7 @@ function Carousel() {
   const visibleSlides = getVisibleSlides();
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    <div className="carousel-section min-h-screen flex flex-col">
       {/* Title Section Above Carousel */}
       <div className="pt-12 pb-8 text-center px-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-3">IEI STUDENT CHAPTER <p>Department of Electronics Engineering</p></h1>
@@ -45,12 +45,12 @@ function Carousel() {
       </div>
 
       {/* Carousel Container with Shadow */}
-      <div className="relative w-full bg-white-50">
+      <div className="relative w-full">
         <div className="flex items-center justify-between px-4 py-8">
           {/* Left Navigation Button */}
           <button
             onClick={prevSlide}
-            className="bg-white hover:bg-gray-100 rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none z-30 flex-shrink-0 shadow-md"
+            className="carousel-nav-btn rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none z-30 flex-shrink-0 shadow-md"
             aria-label="Previous slide"
           >
             <ChevronLeft size={32} className="text-gray-700" />
@@ -120,7 +120,7 @@ function Carousel() {
           {/* Right Navigation Button */}
           <button
             onClick={nextSlide}
-            className="bg-white hover:bg-gray-100 rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none z-30 flex-shrink-0 shadow-md"
+            className="carousel-nav-btn rounded-full p-3 transition-all duration-300 hover:scale-110 focus:outline-none z-30 flex-shrink-0 shadow-md"
             aria-label="Next slide"
           >
             <ChevronRight size={32} className="text-gray-700" />
