@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+  @apply font-opensans font-semibold;
+}
 /* Theme variables */
 :root{
   --bg: #ffffff;
@@ -114,7 +116,7 @@ a, .hover\\:underline {
 
 
 /* Fallback for hero/gradient areas in dark mode (keeps contrast) */
-.dark .bg-[linear-gradient\\(225deg,#A9D6F1_48.98%,#00A6FF_85.36%\\)] {
+.dark .bg {
   background: linear-gradient(225deg, rgba(10,20,30,0.45) 10%, rgba(0,100,150,0.12) 90%) !important;
 }
 

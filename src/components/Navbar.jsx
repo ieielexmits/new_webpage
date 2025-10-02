@@ -57,9 +57,13 @@ function Navbar() {
         <Link to="/">
           <div className="flex items-center space-x-2">
             <img src="iei_logo.png" alt="Logo" className="h-12 w-12" />
-            <h1 className="text-2xl font-bold text-red-900 dark:text-red-300">
+            <h1
+               className="font-frank font-bold"
+               style={{ fontSize: "32px", color: "#8F3938" }}
+            >
               IEI MITS
             </h1>
+
           </div>
         </Link>
 

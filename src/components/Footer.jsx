@@ -10,7 +10,12 @@ function Footer() {
         <div className="flex items-start space-x-4">
           <img src="iei_logo.png" alt="Logo" className="h-14 w-14" />
           <div>
-            <h3 className="text-lg font-bold text-red-900">IEI MITS</h3>
+            <h3
+               className="font-frank font-bold"
+               style={{ fontSize: "20px", color: "#8F3938" }}
+            >
+              IEI MITS
+            </h3>
             <p className="text-gray-600 text-sm mt-1">
               Uniting minds, advancing skills, and engineering the future.
             </p>
