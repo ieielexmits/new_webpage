@@ -15,7 +15,7 @@ function About() {
         {/* Image Section */}
         <div className="flex-shrink-0 w-full lg:w-1/2">
           <img 
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop" 
+            src="About_team.heic" 
             alt="IEI MITS team" 
             className="w-full h-64 md:h-96 lg:h-[520px] object-cover rounded-lg shadow-lg"
           />

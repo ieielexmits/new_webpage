@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400",
-  "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400",
-  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400",
-  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400",
-  "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400",
+  "Team.jpeg",
+  "Gateway_1.jpg",
+  "Gateway_2.jpg",
+  "Study_team.jpg",
+  "Gateway_3.jpg",
 ];
 
 function Carousel() {
