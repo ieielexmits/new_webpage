@@ -11,19 +11,19 @@ function Events() {
   const pastEvents = [
     {
       id: 1,
-      name: "Event",
-      title: "Tech Workshop 2024",
-      date: "March 15, 2024",
-      description: "An intensive workshop covering the latest in web development technologies. Participants learned React, Node.js, and modern deployment practices.",
+      name: "Python Bootcamp ",
+      title: "Web.Deploy",
+      date: "6th-7th April, 2024",
+      description: "An intensive workshop covering the latest in web development technologies. Participants learned Python and gain hand's on experience about Chatbot and API's",
       attendees: "50+ participants",
       highlights: ["Hands-on coding sessions", "Industry expert speakers", "Networking opportunities"],
       imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
     },
     {
       id: 2,
-      name: "Event 2",
-      title: "Annual Meetup 2024",
-      date: "February 10, 2024",
+      name: "Roadmap to GATE ",
+      title: "Gateway to Success",
+      date: "3rd October, 2024",
       description: "Our annual gathering brought together community members for a day of learning, sharing, and celebration. Featured guest speakers and interactive sessions.",
       attendees: "100+ participants",
       highlights: ["Keynote presentations", "Panel discussions", "Awards ceremony"],
@@ -34,17 +34,17 @@ function Events() {
   const upcomingEvents = [
     {
       id: 1,
-      name: "AI Summit 2025",
-      date: "November 20, 2025",
+      name: "Digital Circuit and Verilog ",
+      date: "1st-2nd November, 2025",
       brief: "Join us for an exciting exploration of artificial intelligence and machine learning. Learn about the latest trends, tools, and techniques from industry experts.",
       topics: ["Machine Learning Basics", "AI Ethics", "Future of AI"]
     },
     {
       id: 2,
-      name: "Hackathon 2025",
-      date: "December 5, 2025",
+      name: "GD Sessions  ",
+      date: "6th October, 2025 ",
       brief: "A 48-hour coding marathon where teams compete to build innovative solutions. Great prizes, mentorship, and networking opportunities await!",
-      topics: ["Team Collaboration", "Problem Solving", "Innovation"]
+      topics: ["Team Collaboration", "Problem Solving", "Critical Thinking "]
     }
   ];
 
