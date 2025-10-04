@@ -12,7 +12,7 @@ function Navbar() {
   };
 
   const handleLiveEvent = () => {
-    const eventsSection = document.getElementById("events");
+    const eventsSection = document.getElementById("events-section");
     if (eventsSection) {
       eventsSection.scrollIntoView({ 
         behavior: 'smooth', 
@@ -86,7 +86,7 @@ function Navbar() {
         {/* Desktop Links */}
         <ul className="hidden lg:flex space-x-6 text-gray-700 font-medium dark:text-gray-200">
           <li>
-            <a href="#events" onClick={(e) => scrollToSection(e, "events")} className="hover:text-blue-600 transition-colors">
+            <a href="#events-section" onClick={(e) => scrollToSection(e, "events-section")} className="hover:text-blue-600 transition-colors">
               Events
             </a>
           </li>
