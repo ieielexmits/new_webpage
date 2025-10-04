@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Eye } from "lucide-react";
 
 function Footer() {
+  const [visitorCount, setVisitorCount] = useState(0);
+
+  useEffect(() => {
+    // Get current count from memory
+    const storedCount = sessionStorage.getItem('visitorCount');
+    
+    if (!storedCount) {
+      // First visit in this session
+      const currentTotal = parseInt(localStorage.getItem('totalVisitors') || '0');
+      const newTotal = currentTotal + 1;
+      localStorage.setItem('totalVisitors', newTotal.toString());
+      sessionStorage.setItem('visitorCount', '1'); // Mark this session as counted
+      setVisitorCount(newTotal);
+    } else {
+      // Already counted in this session
+      const currentTotal = parseInt(localStorage.getItem('totalVisitors') || '0');
+      setVisitorCount(currentTotal);
+    }
+  }, []);
+
   const scrollToSection = (e, id) => {
     if (e && e.preventDefault) e.preventDefault();
     const el = document.getElementById(id);
@@ -120,6 +141,22 @@ function Footer() {
               <i className="fa-brands fa-instagram mr-2"></i>
               <span className="break-all">iei_student_chapter_mits</span>
             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Visitor Counter Section */}
+      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs md:text-sm text-center sm:text-left" style={{ color: 'var(--text-secondary)' }}>
+            © 2025 IEI-EC-MITS. All rights reserved.
+          </p>
+          
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900 dark:bg-opacity-30">
+            <Eye size={18} className="text-blue-600 dark:text-blue-400" />
+            <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+              Visitors: <span className="text-blue-600 dark:text-blue-400">{visitorCount.toLocaleString()}</span>
+            </span>
           </div>
         </div>
       </div>
