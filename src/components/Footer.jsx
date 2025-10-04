@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Footer() {
+  const scrollToSection = (e, id) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+  };
+
   return (
     <footer id="footer" className="py-6 md:py-8 lg:py-10 px-4 md:px-6 lg:px-10 mt-8 md:mt-12 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-secondary)' }}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-start">
@@ -80,19 +89,19 @@ function Footer() {
           </h3>
           <ul className="text-xs md:text-sm mt-2 space-y-1">
             <li>
-              <Link to="/events" className="hover:text-red-700" style={{ color: 'var(--text-secondary)' }}>
+              <a href="#events-section" onClick={(e) => scrollToSection(e, "events-section")} className="hover:text-red-700 cursor-pointer" style={{ color: 'var(--text-secondary)' }}>
                 Events
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/about" className="hover:text-red-700" style={{ color: 'var(--text-secondary)' }}>
+              <a href="#about" onClick={(e) => scrollToSection(e, "about")} className="hover:text-red-700 cursor-pointer" style={{ color: 'var(--text-secondary)' }}>
                 About us
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/membership" className="hover:text-red-700" style={{ color: 'var(--text-secondary)' }}>
+              <a href="#membership" onClick={(e) => scrollToSection(e, "membership")} className="hover:text-red-700 cursor-pointer" style={{ color: 'var(--text-secondary)' }}>
                 Membership
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
