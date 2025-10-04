@@ -38,7 +38,19 @@ function Footer() {
             </a>
 
             {/* Phone */}
-            <p className="text-xs md:text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>
+           {/* 1*/}
+           <p className="text-xs md:text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>
+              Sourabh Patidar
+            </p>
+            <a 
+              href="tel:+919981491787" 
+              className="text-xs md:text-sm block hover:underline"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+            <i className="fa-solid fa-phone"></i> 9981491787
+           </a>
+           {/* 2 */}
+           <p className="text-xs md:text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>
               Vaishnavi Pathak
             </p>
             <a 
@@ -47,6 +59,17 @@ function Footer() {
               style={{ color: 'var(--text-secondary)' }}
             >
             <i className="fa-solid fa-phone"></i> 9174407064
+           </a>
+           {/* 3 */}
+           <p className="text-xs md:text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>
+              Alok Singh Kushwaha
+            </p>
+            <a 
+              href="tel:+917509149974" 
+              className="text-xs md:text-sm block hover:underline"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+            <i className="fa-solid fa-phone"></i> 7509149974
            </a>
         </div>
 

@@ -5,8 +5,9 @@ function Events() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedUpcomingEvent, setSelectedUpcomingEvent] = useState(null);
   
-  const enrollFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf_rUFclwPr0B-O0GZf4E9Ohb2dPXSzl4MpZ6RTcLaDCsXs1A/viewform?usp=sharing&ouid=108023437612421612453";
-  const eventImageUrl = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop";
+  // Live Event details....Form URL and image
+  const enrollFormUrl = "https://tinyurl.com/bdhfhchm";
+  const eventImageUrl = "GD.jpg";
 
   const pastEvents = [
     {
@@ -14,37 +15,85 @@ function Events() {
       name: "Python Bootcamp ",
       title: "Web.Deploy",
       date: "6th-7th April, 2024",
-      description: "An intensive workshop covering the latest in web development technologies. Participants learned Python and gain hand's on experience about Chatbot and API's",
-      attendees: "50+ participants",
-      highlights: ["Hands-on coding sessions", "Industry expert speakers", "Networking opportunities"],
-      imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
+      description: "A Python bootcamp titled Web.Deploy was conducted to teach students how to build their own chatbot, explore practical Python applications, and gain hands-on experience in coding and deployment. The session was interactive and project-focused. ",
+      speakers: [
+        {name: "Mr. Prashant Singh Tomar", role: " Software Engineer at Lumenore"},
+        {name: "Mr. Bipul Kumar Singh", role: " Experienced Python Developer"},
+        {name: "Mr. Priyanjay Singh Parihar", role: " Software Engineer "},
+        {name: "Mr. Saurabh Rathore", role: " Assistant System Engineer at TCS"},
+      ],
+      attendees: "80+ students",
+      highlights: ["Hands-on training to build a chatbot", "Practical Python coding and deployment exercises", "Networking opportunities", "Interactive Q&A session"],
+      imageUrl: "Deploy.jpeg"
     },
     {
       id: 2,
+      name: "Entrepreneurship Seminar",
+      title: "Entrepreneurial Mindset: Strategies for Success",
+      date: "20th September, 2024",
+      description: "A seminar on Entrepreneurship was conducted to inspire students to explore innovative business ideas, develop an entrepreneurial mindset, and understand the challenges and opportunities of starting a venture. The session provided practical insights and interactive discussions.",
+      speakers: [
+        {name: "Dr. Varun Sharma", role: " Assistant Professor, Department of Electronics & Telecommunication, MITS-DU"}
+      ],
+      attendees: "50+ students",
+      highlights: ["Guidance on starting and managing a business", "Interactive Q&A session"],
+      imageUrl: "Entrepreneurship.jpeg"
+    },
+    {
+      id: 3,
       name: "Roadmap to GATE ",
       title: "Gateway to Success",
       date: "3rd October, 2024",
-      description: "Our annual gathering brought together community members for a day of learning, sharing, and celebration. Featured guest speakers and interactive sessions.",
-      attendees: "100+ participants",
-      highlights: ["Keynote presentations", "Panel discussions", "Awards ceremony"],
-      imageUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop"
+      description: "A seminar titled Gateway to Success was conducted to motivate students, provide guidance on career planning, and equip them with strategies to achieve personal and professional goals. The session was highly engaging and informative.",
+      speakers: [
+        {name: "Mr. Vivek Khandelwal", role: " All India Rank 45, GATE 2019 (CSE)"}
+      ],
+      attendees: "400+ students",
+      highlights: ["Insights on career planning and goal setting", "Panel discussions", "Interactive Q&A session"],
+      imageUrl: "Success.jpeg"
+    },
+    {
+      id: 4,
+      name: " Study Abroad Seminar",
+      title: " Study Abroad",
+      date: "21st October, 2024",
+      description: "A seminar on Study Abroad Opportunities was organized to provide students with insights into global education, application procedures, and career prospects. The session created an interactive platform for learning and guidance.",
+      speakers: [
+        {name: "Dr. Chhavi Singhal ", role: " Director, GEC Overseas"}
+      ],
+      attendees: "60+ students",
+      highlights: ["Admission, scholarships & visa guidance", "Doubts clarified through Q&A session"],
+      imageUrl: "StudyAbroad.jpeg"
+    },
+    {
+      id: 5,
+      name: "Engineer's Day Celebration",
+      title: "Engineer's Day",
+      date: "15th September, 2025",
+      description: "A seminar on Study Abroad Opportunities was organized to provide students with insights into global education, application procedures, and career prospects. The session created an interactive platform for learning and guidance.",
+      speakers: [
+        {name: "Dr. Pramod Kumar Singhal ", role: "Professor, Department of Electronics & Telecommunication, MITS-DU"}
+      ],
+      attendees: "120+ students",
+      highlights: ["Talk on engineering innovations & career paths", "Interactive Q&A session"],
+      imageUrl: "EngDay.jpeg"
     }
   ];
 
   const upcomingEvents = [
     {
       id: 1,
-      name: "Digital Circuit and Verilog ",
+      name: "Workshop on Digital Designing in Verilog",
       date: "1st-2nd November, 2025",
-      brief: "Join us for an exciting exploration of artificial intelligence and machine learning. Learn about the latest trends, tools, and techniques from industry experts.",
-      topics: ["Machine Learning Basics", "AI Ethics", "Future of AI"]
+      brief: "To provide students with hands-on experience in digital design using Verilog, strengthen their coding and simulation skills, and prepare them for real-world digital system applications.",
+      topics: ["VLSI Design", "Digital Circuits", "Verilog"]
     },
     {
       id: 2,
-      name: "GD Sessions  ",
+      name: "Group Discussion (GD) Sessions",
       date: "6th October, 2025 ",
-      brief: "A 48-hour coding marathon where teams compete to build innovative solutions. Great prizes, mentorship, and networking opportunities await!",
-      topics: ["Team Collaboration", "Problem Solving", "Critical Thinking "]
+      brief: "Our GD Series, held 2-3 times a month, offers students a platform to enhance communication, critical thinking, and leadership skills.",
+      topics: ["Team Collaboration", "Critical Thinking", "Problem Solving", ]
     }
   ];
 
@@ -109,7 +158,7 @@ function Events() {
             Live event <span className="text-red-600 text-xl md:text-2xl animate-pulse">●</span>
           </h3>
           <p className="italic mb-3 md:mb-4 text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
-            'Name of Event'
+            '1st GD Session'
           </p>
           
           <motion.button
@@ -118,7 +167,7 @@ function Events() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Enroll Now
+            Enroll Now!
           </motion.button>
 
           {/* Event Image */}
@@ -214,6 +263,23 @@ function Events() {
                     {selectedEvent.description}
                   </p>
                 </div>
+
+                {/* Speaker(s) */}
+              {selectedEvent.speakers && selectedEvent.speakers.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  Speaker(s)
+                  </h3>
+                  <ul className="space-y-2">
+                    {selectedEvent.speakers.map((speaker, index) => (
+                      <li key={index} className="text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+                       <span className="font-semibold text-blue-600">{speaker.name}</span>
+                       {speaker.role && ` — ${speaker.role}`}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+               )}
 
                 <div className="mb-6">
                   <p className="text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
