@@ -1,101 +1,103 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { collection, query, where, getDocs, orderBy, Timestamp } from "firebase/firestore";
+import { db } from "../firebase";
 
 function Events() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedUpcomingEvent, setSelectedUpcomingEvent] = useState(null);
-  
-  // Live Event details....Form URL and image
-  const enrollFormUrl = "https://tinyurl.com/bdhfhchm";
-  const eventImageUrl = "GD.jpg";
+  const [pastEvents, setPastEvents] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [liveEvent, setLiveEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const pastEvents = [
-    {
-      id: 1,
-      name: "Python Bootcamp ",
-      title: "Web.Deploy",
-      date: "6th-7th April, 2024",
-      description: "A Python bootcamp titled Web.Deploy was conducted to teach students how to build their own chatbot, explore practical Python applications, and gain hands-on experience in coding and deployment. The session was interactive and project-focused. ",
-      speakers: [
-        {name: "Mr. Prashant Singh Tomar", role: " Software Engineer at Lumenore"},
-        {name: "Mr. Bipul Kumar Singh", role: " Experienced Python Developer"},
-        {name: "Mr. Priyanjay Singh Parihar", role: " Software Engineer "},
-        {name: "Mr. Saurabh Rathore", role: " Assistant System Engineer at TCS"},
-      ],
-      attendees: "80+ students",
-      highlights: ["Hands-on training to build a chatbot", "Practical Python coding and deployment exercises", "Networking opportunities", "Interactive Q&A session"],
-      imageUrl: "Deploy.jpeg"
-    },
-    {
-      id: 2,
-      name: "Entrepreneurship Seminar",
-      title: "Entrepreneurial Mindset: Strategies for Success",
-      date: "20th September, 2024",
-      description: "A seminar on Entrepreneurship was conducted to inspire students to explore innovative business ideas, develop an entrepreneurial mindset, and understand the challenges and opportunities of starting a venture. The session provided practical insights and interactive discussions.",
-      speakers: [
-        {name: "Dr. Varun Sharma", role: " Assistant Professor, Department of Electronics & Telecommunication, MITS-DU"}
-      ],
-      attendees: "50+ students",
-      highlights: ["Guidance on starting and managing a business", "Interactive Q&A session"],
-      imageUrl: "Entrepreneurship.jpeg"
-    },
-    {
-      id: 3,
-      name: "Roadmap to GATE ",
-      title: "Gateway to Success",
-      date: "3rd October, 2024",
-      description: "A seminar titled Gateway to Success was conducted to motivate students, provide guidance on career planning, and equip them with strategies to achieve personal and professional goals. The session was highly engaging and informative.",
-      speakers: [
-        {name: "Mr. Vivek Khandelwal", role: " All India Rank 45, GATE 2019 (CSE)"}
-      ],
-      attendees: "400+ students",
-      highlights: ["Insights on career planning and goal setting", "Panel discussions", "Interactive Q&A session"],
-      imageUrl: "Success.jpeg"
-    },
-    {
-      id: 4,
-      name: " Study Abroad Seminar",
-      title: " Study Abroad",
-      date: "21st October, 2024",
-      description: "A seminar on Study Abroad Opportunities was organized to provide students with insights into global education, application procedures, and career prospects. The session created an interactive platform for learning and guidance.",
-      speakers: [
-        {name: "Dr. Chhavi Singhal ", role: " Director, GEC Overseas"}
-      ],
-      attendees: "60+ students",
-      highlights: ["Admission, scholarships & visa guidance", "Doubts clarified through Q&A session"],
-      imageUrl: "StudyAbroad.jpeg"
-    },
-    {
-      id: 5,
-      name: "Engineer's Day Celebration",
-      title: "Engineer's Day",
-      date: "15th September, 2025",
-      description: "A seminar on Study Abroad Opportunities was organized to provide students with insights into global education, application procedures, and career prospects. The session created an interactive platform for learning and guidance.",
-      speakers: [
-        {name: "Dr. Pramod Kumar Singhal ", role: "Professor, Department of Electronics & Telecommunication, MITS-DU"}
-      ],
-      attendees: "120+ students",
-      highlights: ["Talk on engineering innovations & career paths", "Interactive Q&A session"],
-      imageUrl: "EngDay.jpeg"
-    }
-  ];
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
-  const upcomingEvents = [
-    {
-      id: 1,
-      name: "Workshop on Digital Designing in Verilog",
-      date: "1st-2nd November, 2025",
-      brief: "To provide students with hands-on experience in digital design using Verilog, strengthen their coding and simulation skills, and prepare them for real-world digital system applications.",
-      topics: ["VLSI Design", "Digital Circuits", "Verilog"]
-    },
-    {
-      id: 2,
-      name: "Group Discussion (GD) Sessions",
-      date: "6th October, 2025 ",
-      brief: "Our GD Series, held 2-3 times a month, offers students a platform to enhance communication, critical thinking, and leadership skills.",
-      topics: ["Team Collaboration", "Critical Thinking", "Problem Solving", ]
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      console.log("Fetching events from Firestore...");
+
+      const eventsRef = collection(db, "events");
+      const querySnapshot = await getDocs(eventsRef);
+      
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+
+      const past = [];
+      const upcoming = [];
+      let live = null;
+
+      querySnapshot.forEach((doc) => {
+        const eventData = { 
+          id: doc.id, 
+          ...doc.data() 
+        };
+
+        console.log("Event:", eventData);
+
+        // Check status field first
+        if (eventData.status === "live") {
+          live = eventData;
+        } else if (eventData.status === "past") {
+          past.push(eventData);
+        } else if (eventData.status === "upcoming") {
+          upcoming.push(eventData);
+        } else {
+          // If no status field, try to determine by date
+          if (eventData.eventEndDate) {
+            const eventEndDate = eventData.eventEndDate.toDate();
+            if (eventEndDate < currentDate) {
+              past.push(eventData);
+            } else {
+              upcoming.push(eventData);
+            }
+          } else if (eventData.eventDate) {
+            const eventDate = eventData.eventDate.toDate();
+            if (eventDate < currentDate) {
+              past.push(eventData);
+            } else {
+              upcoming.push(eventData);
+            }
+          } else {
+            // Default to past if no date info
+            past.push(eventData);
+          }
+        }
+      });
+
+      // Sort by date (most recent first for past, nearest first for upcoming)
+      past.sort((a, b) => {
+        const dateA = a.eventDate ? a.eventDate.toDate() : new Date(0);
+        const dateB = b.eventDate ? b.eventDate.toDate() : new Date(0);
+        return dateB - dateA; // Descending (newest first)
+      });
+
+      upcoming.sort((a, b) => {
+        const dateA = a.eventDate ? a.eventDate.toDate() : new Date();
+        const dateB = b.eventDate ? b.eventDate.toDate() : new Date();
+        return dateA - dateB; // Ascending (nearest first)
+      });
+
+      setPastEvents(past);
+      setUpcomingEvents(upcoming);
+      setLiveEvent(live);
+
+      console.log("Categorized events:", {
+        past: past.length,
+        upcoming: upcoming.length,
+        live: live ? 1 : 0
+      });
+
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      alert("Error loading events. Check console for details.");
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   const cardVariants = {
     initial: { scale: 1, y: 0 },
@@ -111,15 +113,34 @@ function Events() {
   };
 
   const handleEnrollClick = () => {
-    window.open(enrollFormUrl, '_blank');
+    if (liveEvent && liveEvent.enrollmentUrl) {
+      window.open(liveEvent.enrollmentUrl, '_blank');
+    }
   };
 
+  // Get display name for event
+  const getEventName = (event) => {
+    return event.name || event.title || event.id;
+  };
+
+  if (loading) {
+    return (
+      <section id="events-section" className="bg-[linear-gradient(225deg,#A9D6F1_48.98%,#00A6FF_85.36%)] py-16 min-h-screen pt-20 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+          <p className="mt-4 text-white font-semibold">Loading events...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
-   <section id="events-section" className="bg-[linear-gradient(225deg,#A9D6F1_48.98%,#00A6FF_85.36%)] py-16 min-h-screen pt-20">
+    <section id="events-section" className="bg-[linear-gradient(225deg,#A9D6F1_48.98%,#00A6FF_85.36%)] py-16 min-h-screen pt-20">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 px-4" style={{ color: 'var(--text-primary)' }}>
         Our Events
       </h2>
       <div className="flex flex-col lg:flex-row gap-6 md:gap-8 px-4 md:px-6 lg:px-10 max-w-7xl mx-auto justify-center items-stretch">
+        
         {/* Past Events */}
         <motion.div
           className="rounded-3xl shadow-lg p-6 md:p-8 cursor-pointer flex-1 min-w-[280px] transition-colors duration-300"
@@ -131,19 +152,25 @@ function Events() {
           <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6" style={{ color: 'var(--text-primary)' }}>
             Past Events
           </h3>
-          <ul className="space-y-3 md:space-y-4">
-            {pastEvents.map((event, index) => (
-              <li 
-                key={event.id}
-                onClick={() => setSelectedEvent(event)}
-                className="flex items-center justify-between hover:text-blue-600 transition-colors cursor-pointer hover:bg-opacity-50 p-2 rounded-lg text-sm md:text-base"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                <span>{index + 1}. {event.name}</span>
-                <span className="text-gray-400">›</span>
-              </li>
-            ))}
-          </ul>
+          {pastEvents.length > 0 ? (
+            <ul className="space-y-3 md:space-y-4">
+              {pastEvents.map((event, index) => (
+                <li 
+                  key={event.id}
+                  onClick={() => setSelectedEvent(event)}
+                  className="flex items-center justify-between hover:text-blue-600 transition-colors cursor-pointer hover:bg-opacity-50 p-2 rounded-lg text-sm md:text-base"
+                  style={{ color: 'var(--text-secondary)' }}
+                >
+                  <span>{index + 1}. {getEventName(event)}</span>
+                  <span className="text-gray-400">›</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center italic mt-8" style={{ color: 'var(--text-secondary)' }}>
+              No past events
+            </p>
+          )}
         </motion.div>
 
         {/* Live Event */}
@@ -157,27 +184,36 @@ function Events() {
           <h3 className="text-lg md:text-xl font-bold text-blue-600 mb-3 md:mb-4">
             Live event <span className="text-red-600 text-xl md:text-2xl animate-pulse">●</span>
           </h3>
-          <p className="italic mb-3 md:mb-4 text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
-            '1st GD Session'
-          </p>
-          
-          <motion.button
-            onClick={handleEnrollClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 md:py-3 px-6 md:px-8 rounded-lg shadow-md mb-4 md:mb-6 transition-colors text-sm md:text-base w-full sm:w-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Enroll Now!
-          </motion.button>
+          {liveEvent ? (
+            <>
+              <p className="italic mb-3 md:mb-4 text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+                '{getEventName(liveEvent)}'
+              </p>
+              
+              <motion.button
+                onClick={handleEnrollClick}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 md:py-3 px-6 md:px-8 rounded-lg shadow-md mb-4 md:mb-6 transition-colors text-sm md:text-base w-full sm:w-auto"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Enroll Now!
+              </motion.button>
 
-          {/* Event Image */}
-          <div className="mt-4 rounded-lg overflow-hidden shadow-inner" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-            <img 
-              src={eventImageUrl} 
-              alt="Event" 
-              className="w-full h-40 md:h-48 object-cover"
-            />
-          </div>
+              {liveEvent.imageUrl && (
+                <div className="mt-4 rounded-lg overflow-hidden shadow-inner" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+                  <img 
+                    src={liveEvent.imageUrl} 
+                    alt="Event" 
+                    className="w-full h-40 md:h-48 object-cover"
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            <p className="mt-8 italic" style={{ color: 'var(--text-secondary)' }}>
+              No live events at the moment
+            </p>
+          )}
         </motion.div>
 
         {/* Upcoming Events */}
@@ -200,7 +236,7 @@ function Events() {
                   className="flex items-center justify-between hover:text-blue-600 transition-colors cursor-pointer hover:bg-opacity-50 p-2 rounded-lg text-sm md:text-base"
                   style={{ color: 'var(--text-secondary)' }}
                 >
-                  <span>{index + 1}. {event.name}</span>
+                  <span>{index + 1}. {getEventName(event)}</span>
                   <span className="text-gray-400">›</span>
                 </li>
               ))}
@@ -213,7 +249,7 @@ function Events() {
         </motion.div>
       </div>
 
-      {/* Event Details Modal */}
+      {/* Past Event Details Modal */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
@@ -233,11 +269,13 @@ function Events() {
             >
               {/* Modal Header */}
               <div className="relative">
-                <img 
-                  src={selectedEvent.imageUrl} 
-                  alt={selectedEvent.title}
-                  className="w-full h-48 md:h-64 object-cover rounded-t-2xl"
-                />
+                {selectedEvent.imageUrl && (
+                  <img 
+                    src={selectedEvent.imageUrl} 
+                    alt={selectedEvent.title}
+                    className="w-full h-48 md:h-64 object-cover rounded-t-2xl"
+                  />
+                )}
                 <button
                   onClick={() => setSelectedEvent(null)}
                   className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
@@ -251,55 +289,61 @@ function Events() {
               {/* Modal Content */}
               <div className="p-6 md:p-8">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                  {selectedEvent.title}
+                  {selectedEvent.title || selectedEvent.name || selectedEvent.id}
                 </h2>
                 <p className="text-blue-600 font-semibold mb-4 text-sm md:text-base">{selectedEvent.date}</p>
                 
-                <div className="mb-6">
-                  <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                    About
-                  </h3>
-                  <p className="leading-relaxed text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
-                    {selectedEvent.description}
-                  </p>
-                </div>
+                {selectedEvent.description && (
+                  <div className="mb-6">
+                    <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                      About
+                    </h3>
+                    <p className="leading-relaxed text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+                      {selectedEvent.description}
+                    </p>
+                  </div>
+                )}
 
-                {/* Speaker(s) */}
-              {selectedEvent.speakers && selectedEvent.speakers.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                  Speaker(s)
-                  </h3>
-                  <ul className="space-y-2">
-                    {selectedEvent.speakers.map((speaker, index) => (
-                      <li key={index} className="text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
-                       <span className="font-semibold text-blue-600">{speaker.name}</span>
-                       {speaker.role && ` — ${speaker.role}`}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-               )}
+                {/* Speakers */}
+                {selectedEvent.speakers && selectedEvent.speakers.length > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                      Speaker(s)
+                    </h3>
+                    <ul className="space-y-2">
+                      {selectedEvent.speakers.map((speaker, index) => (
+                        <li key={index} className="text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+                          <span className="font-semibold text-blue-600">{speaker.name}</span>
+                          {speaker.role && ` — ${speaker.role}`}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                <div className="mb-6">
-                  <p className="text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
-                    <span className="font-semibold">Attendees:</span> {selectedEvent.attendees}
-                  </p>
-                </div>
+                {selectedEvent.attendees && (
+                  <div className="mb-6">
+                    <p className="text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+                      <span className="font-semibold">Attendees:</span> {selectedEvent.attendees}
+                    </p>
+                  </div>
+                )}
 
-                <div className="mb-6">
-                  <h3 className="text-base md:text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
-                    Highlights
-                  </h3>
-                  <ul className="space-y-2">
-                    {selectedEvent.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start text-sm md:text-base">
-                        <span className="text-blue-600 mr-2">✓</span>
-                        <span style={{ color: 'var(--text-secondary)' }}>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {selectedEvent.highlights && selectedEvent.highlights.length > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-base md:text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
+                      Highlights
+                    </h3>
+                    <ul className="space-y-2">
+                      {selectedEvent.highlights.map((highlight, index) => (
+                        <li key={index} className="flex items-start text-sm md:text-base">
+                          <span className="text-blue-600 mr-2">✓</span>
+                          <span style={{ color: 'var(--text-secondary)' }}>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 <button
                   onClick={() => setSelectedEvent(null)}
@@ -331,12 +375,11 @@ function Events() {
               className="rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 transition-colors duration-300"
               style={{ backgroundColor: 'var(--card-bg)' }}
             >
-              {/* Close Button */}
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-2">
                   <span className="text-xl md:text-2xl">📅</span>
                   <h2 className="text-xl md:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-                    {selectedUpcomingEvent.name}
+                    {getEventName(selectedUpcomingEvent)}
                   </h2>
                 </div>
                 <button
@@ -349,43 +392,43 @@ function Events() {
                 </button>
               </div>
 
-              {/* Date Badge */}
               <div className="inline-block bg-blue-100 text-blue-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold mb-4">
                 {selectedUpcomingEvent.date}
               </div>
 
-              {/* Brief Description */}
-              <div className="mb-6">
-                <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                  What to Expect
-                </h3>
-                <p className="leading-relaxed text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
-                  {selectedUpcomingEvent.brief}
-                </p>
-              </div>
-
-              {/* Topics Covered */}
-              <div className="mb-6">
-                <h3 className="text-base md:text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
-                  Topics Covered
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedUpcomingEvent.topics.map((topic, index) => (
-                    <span 
-                      key={index}
-                      className="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm"
-                      style={{ 
-                        backgroundColor: 'var(--bg-secondary)', 
-                        color: 'var(--text-primary)' 
-                      }}
-                    >
-                      {topic}
-                    </span>
-                  ))}
+              {(selectedUpcomingEvent.brief || selectedUpcomingEvent.description) && (
+                <div className="mb-6">
+                  <h3 className="text-base md:text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                    What to Expect
+                  </h3>
+                  <p className="leading-relaxed text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+                    {selectedUpcomingEvent.brief || selectedUpcomingEvent.description}
+                  </p>
                 </div>
-              </div>
+              )}
 
-              {/* Action Buttons */}
+              {selectedUpcomingEvent.topics && selectedUpcomingEvent.topics.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-base md:text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
+                    Topics Covered
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedUpcomingEvent.topics.map((topic, index) => (
+                      <span 
+                        key={index}
+                        className="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm"
+                        style={{ 
+                          backgroundColor: 'var(--bg-secondary)', 
+                          color: 'var(--text-primary)' 
+                        }}
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => setSelectedUpcomingEvent(null)}
@@ -399,9 +442,7 @@ function Events() {
                   Close
                 </button>
                 <button
-                  onClick={() => {
-                    setSelectedUpcomingEvent(null);
-                  }}
+                  onClick={() => setSelectedUpcomingEvent(null)}
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 md:py-3 rounded-lg transition-colors text-sm md:text-base"
                 >
                   Register Interest

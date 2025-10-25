@@ -8,6 +8,9 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import EventDetail from "./components/EventDetail";
 import Carousel from "./components/Carousel";
+import AdminPanel from "./components/AdminPanel";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -42,9 +45,21 @@ function App() {
           }
         />
         <Route path="/events/:id" element={<EventDetail />} />
+        
+        {/* Login Route */}
+        <Route path="/login" element={<Login />} />
+        
+        {/* Protected Admin Panel Route */}
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
       <Footer />
-
     </Router>
   );
 }
